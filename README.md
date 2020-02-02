@@ -11,8 +11,6 @@ This app uses MVVM architecture with Dagger 2, RxJava, Android Architecture Comp
 * [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)
 * [Dagger 2](https://github.com/google/dagger)
 * [RxJava](https://github.com/ReactiveX/RxJava)
-* [Anko](https://github.com/Kotlin/anko/)
-* [Karamba](https://github.com/matteocrippa/karamba)
 * [Retrofit](https://github.com/square/retrofit/)
 * [Glide](https://github.com/bumptech/glide/)
 * [Gson](https://github.com/google/gson/)
