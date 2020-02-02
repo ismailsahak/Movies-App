@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Movies App</string>
+    <string name="dev_name">Ismail</string>
+    <string name="poster_iv_info">Poster Of The Movie</string>
+    <string name="popularity_label">Popularity:</string>
+    <string name="error_messsage">Oops! Something is wrong with our app. Please try again.</string>
+
+    <string-array name="sort_criteria">
+        <item>Popular</item>
+        <item>Top Rated</item>
+        <item>Upcoming</item>
+        <item>Now Playing</item>
+    </string-array>
+</resources>
