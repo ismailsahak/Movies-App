@@ -18,6 +18,17 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.details.DetailsActivity">
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/white"
+        android:fontFamily="@font/opensans_semibold"
+        android:onClick="@{() -> viewmodel.onClickBooking()}"
+        android:text="Book this movie"/>
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"

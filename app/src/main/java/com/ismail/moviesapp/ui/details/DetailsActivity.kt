@@ -1,5 +1,7 @@
 package com.ismail.moviesapp.ui.details
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.transition.Slide
@@ -23,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_details.*
 import org.jetbrains.anko.longToast
 import javax.inject.Inject
 import kotlin.math.abs
+
 
 class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>(), DetailsNavigator {
     lateinit var mViewModel: DetailsViewModel
@@ -117,5 +120,16 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
         mViewModel.observeError().observe(this, Observer { it?.let {
             handleError(it)
         } })
+
+        mViewModel.navigateToBooking.observe(this, Observer { it?.let {
+            openBookingWebsite()
+        }})
+    }
+
+    private fun openBookingWebsite() {
+        val url = Constants.BOOKING_URL
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 }

@@ -15,6 +15,7 @@ import javax.inject.Inject
 class DetailsViewModel @Inject constructor(schedulerProvider: SchedulerProvider, private val moviesRepository: MoviesRepository) : BaseViewModel<DetailsNavigator>(schedulerProvider) {
     val isLoading = MutableLiveData<Boolean>()
     val movieLiveData: MutableLiveData<Movie> = MutableLiveData()
+    val navigateToBooking = MutableLiveData<Unit>()
     private val error = MutableLiveData<Throwable>()
     private val movieResponseObserver: Observer<Resource<Movie>> = Observer { t -> processMovieResponse(t) }
 
@@ -71,4 +72,9 @@ class DetailsViewModel @Inject constructor(schedulerProvider: SchedulerProvider,
             return@map outputString
         }
     }
+
+    fun onClickBooking() {
+        navigateToBooking.value = Unit
+    }
+
 }
