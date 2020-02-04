@@ -15,7 +15,6 @@ import dagger.android.AndroidInjection
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), BaseFragment.Callback {
 
-    private val mProgressDialog: ProgressDialog? = null
     var viewDataBinding: T? = null
     private var mViewModel: V? = null
     /**
@@ -58,12 +57,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
 
-    fun hideLoading() {
-        if (mProgressDialog != null && mProgressDialog.isShowing) {
-            mProgressDialog.cancel()
-        }
-    }
-
     private fun performDependencyInjection() {
         AndroidInjection.inject(this)
     }
@@ -73,10 +66,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions, requestCode)
         }
-    }
-
-    fun showLoading() {
-        hideLoading()
     }
 
     private fun performDataBinding() {

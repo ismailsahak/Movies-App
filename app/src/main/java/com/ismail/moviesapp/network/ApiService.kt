@@ -9,10 +9,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-/**
- * Created by bapspatil
- */
-
 interface ApiService {
 
     @GET("discover/movie")
