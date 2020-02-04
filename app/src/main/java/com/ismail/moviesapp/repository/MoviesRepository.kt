@@ -19,7 +19,7 @@ class MoviesRepository {
     }
 
     fun getMoviesByReleaseDate(currentPage: Int): LiveData<Resource<TMDBResponse>> {
-        return getMoviesCall.makeCall(getApiService().getMovies(Constants.SORT_BY_POPULARITY, BuildConfig.TMDB_API_TOKEN, "en-US", currentPage))
+        return getMoviesCall.makeCall(getApiService().getMovies(Constants.SORT_BY_RELEASE_DESC, BuildConfig.TMDB_API_TOKEN, "en-US", currentPage))
     }
 
     fun getMovieById(movieId: Int): LiveData<Resource<Movie>> {

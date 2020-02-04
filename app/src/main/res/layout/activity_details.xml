@@ -168,7 +168,7 @@
                             android:layout_marginTop="16dp"
                             android:textSize="20sp"
                             android:text="@{viewmodel.movieLiveData.language}"
-                            tools:text="Dec 13\n1989"/>
+                            tools:text="English"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -194,7 +194,7 @@
                             android:layout_marginTop="16dp"
                             android:textSize="20sp"
                             android:text="@{viewmodel.observeGenres()}"
-                            tools:text="Steven Spielberg"/>
+                            tools:text="Horror"/>
                     </LinearLayout>
 
                 </LinearLayout>
