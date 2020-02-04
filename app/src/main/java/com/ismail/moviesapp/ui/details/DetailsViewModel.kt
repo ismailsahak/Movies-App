@@ -56,6 +56,7 @@ class DetailsViewModel @Inject constructor(schedulerProvider: SchedulerProvider,
                 val minuteText = if(minutes > 1) "minutes" else "minute"
                 return@map "$hours $hourText $minutes $minuteText"
             }
+            return@map "Not specified yet"
         }
     }
 
