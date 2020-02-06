@@ -7,10 +7,9 @@ import com.ismail.moviesapp.utils.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
 
-abstract class BaseViewModel<N>(schedulerProvider: SchedulerProvider) : ViewModel() {
+abstract class BaseViewModel<N> : ViewModel() {
 
     private val isLoading = ObservableBoolean(false)
-    var mSchedulerProvider: SchedulerProvider = schedulerProvider
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
     private lateinit var mNavigator: WeakReference<N>
 

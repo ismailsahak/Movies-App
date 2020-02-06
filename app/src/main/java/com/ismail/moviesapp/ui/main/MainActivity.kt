@@ -56,6 +56,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
+        mMainViewModel.fetchMovies(LATEST_MOVIES)
+
         setupRecyclerView()
         addListener()
         subscribeToLiveData()

@@ -8,7 +8,6 @@ import com.ismail.moviesapp.R
 import com.ismail.moviesapp.ui.main.MainActivity
 import org.jetbrains.anko.intentFor
 
-// TODO: Extend this to BaseActivity, implement SplashNavigator
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

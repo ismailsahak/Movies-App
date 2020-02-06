@@ -7,7 +7,11 @@ import com.ismail.moviesapp.utils.rx.SchedulerProvider
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.ismail.moviesapp.BuildConfig
+import com.ismail.moviesapp.network.ApiService
+import com.ismail.moviesapp.network.HttpClient
 import com.ismail.moviesapp.repository.MoviesRepository
+import com.ismail.moviesapp.repository.MoviesRepositoryImpl
+import com.ismail.moviesapp.utils.NetworkUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -31,5 +35,14 @@ class AppModule {
     fun provideSchedulerProvider(): SchedulerProvider = AppSchedulerProvider()
 
     @Provides
-    fun provideMoviesRepository(): MoviesRepository = MoviesRepository()
+    @Singleton
+    fun provideMoviesRepository(httpClient: HttpClient): MoviesRepository {
+        return MoviesRepositoryImpl(httpClient)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHttpClient(): HttpClient {
+        return NetworkUtils
+    }
 }

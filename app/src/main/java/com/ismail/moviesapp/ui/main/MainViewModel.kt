@@ -8,22 +8,18 @@ import com.ismail.moviesapp.model.Movie
 import com.ismail.moviesapp.model.TMDBResponse
 import com.ismail.moviesapp.network.Resource
 import com.ismail.moviesapp.repository.MoviesRepository
+import com.ismail.moviesapp.repository.MoviesRepositoryImpl
 import com.ismail.moviesapp.ui.base.BaseViewModel
 import com.ismail.moviesapp.utils.Constants
-import com.ismail.moviesapp.utils.rx.SchedulerProvider
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(schedulerProvider: SchedulerProvider, private val moviesRepository: MoviesRepository) : BaseViewModel<MainNavigator>(schedulerProvider) {
+class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepository) : BaseViewModel<MainNavigator>() {
+    val moviesObservableArrayList: ObservableArrayList<Movie> = ObservableArrayList()
     private var currentPage: Int = Constants.INITIAL_PAGE
     private val isLoading = MutableLiveData<Boolean>()
     private val error = MutableLiveData<Throwable>()
-    val moviesObservableArrayList: ObservableArrayList<Movie> = ObservableArrayList()
-    var movieListLiveData: MutableLiveData<List<Movie>> = MutableLiveData()
+    private var movieListLiveData: MutableLiveData<List<Movie>> = MutableLiveData()
     private val movieListResponseObserver: Observer<Resource<TMDBResponse>> = Observer { t -> processMovieListResponse(t) }
-
-    init {
-        fetchMovies(MainActivity.LATEST_MOVIES)
-    }
 
     fun addMoviesToList(movies: List<Movie>?) {
         movies?.let { moviesObservableArrayList.addAll(movies) }

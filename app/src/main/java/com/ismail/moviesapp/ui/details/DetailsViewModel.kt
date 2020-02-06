@@ -8,11 +8,10 @@ import com.ismail.moviesapp.model.Movie
 import com.ismail.moviesapp.network.Resource
 import com.ismail.moviesapp.repository.MoviesRepository
 import com.ismail.moviesapp.ui.base.BaseViewModel
-import com.ismail.moviesapp.utils.rx.SchedulerProvider
 import org.jetbrains.anko.collections.forEachWithIndex
 import javax.inject.Inject
 
-class DetailsViewModel @Inject constructor(schedulerProvider: SchedulerProvider, private val moviesRepository: MoviesRepository) : BaseViewModel<DetailsNavigator>(schedulerProvider) {
+class DetailsViewModel @Inject constructor(private val moviesRepository: MoviesRepository) : BaseViewModel<DetailsNavigator>() {
     val isLoading = MutableLiveData<Boolean>()
     val movieLiveData: MutableLiveData<Movie> = MutableLiveData()
     val navigateToBooking = MutableLiveData<Unit>()
@@ -63,11 +62,11 @@ class DetailsViewModel @Inject constructor(schedulerProvider: SchedulerProvider,
     fun observeGenres(): LiveData<String> {
         return Transformations.map(movieLiveData) {
             val genres = it.genre
-            val outputString: String = ""
+            var outputString: String = ""
             genres?.forEachWithIndex {index, genre ->
-                outputString.plus(genre.name)
+                outputString = outputString.plus(genre.name)
                 if(index != genres.lastIndex){
-                    outputString.plus(", ")
+                    outputString = outputString.plus(", ")
                 }
             }
             return@map outputString

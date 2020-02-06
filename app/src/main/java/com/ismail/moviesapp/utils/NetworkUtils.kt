@@ -4,12 +4,17 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.ismail.moviesapp.network.ApiService
+import com.ismail.moviesapp.network.HttpClient
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object NetworkUtils {
+object NetworkUtils : HttpClient {
+
+    override fun getApiService(): ApiService {
+        return ApiService.create()
+    }
 
     fun hasNetwork(context: Context): Boolean? {
         var isConnected: Boolean? = false // Initial Value
@@ -20,23 +25,23 @@ object NetworkUtils {
         return isConnected
     }
 
-    fun getCacheEnabledRetrofit(context: Context): Retrofit {
-        val okHttpClient = OkHttpClient.Builder()
-                .cache(Cache(context.cacheDir, (5 * 1024 * 1024).toLong()))
-                .addInterceptor { chain ->
-                    var request = chain.request()
-                    request = if (hasNetwork(context)!!)
-                        request.newBuilder().header("Cache-Control", "public, max-age=" + 1).build()
-                    else
-                        request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build()
-                    chain.proceed(request)
-                }
-                .build()
-
-        return Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .baseUrl(ApiService.BASE_URL)
-                .build()
-    }
+//    fun getCacheEnabledRetrofit(context: Context): Retrofit {
+//        val okHttpClient = OkHttpClient.Builder()
+//                .cache(Cache(context.cacheDir, (5 * 1024 * 1024).toLong()))
+//                .addInterceptor { chain ->
+//                    var request = chain.request()
+//                    request = if (hasNetwork(context)!!)
+//                        request.newBuilder().header("Cache-Control", "public, max-age=" + 1).build()
+//                    else
+//                        request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build()
+//                    chain.proceed(request)
+//                }
+//                .build()
+//
+//        return Retrofit.Builder()
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .client(okHttpClient)
+//                .baseUrl(ApiService.BASE_URL)
+//                .build()
+//    }
 }
